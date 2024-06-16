@@ -1,0 +1,89 @@
+//Banking system that allows user to withdraw, deposit and check balance 
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class account{
+    private: 
+        string name;
+        long account_num;
+        float balance;
+        
+    public:
+        account(string n,  long accNum, float bal)
+        {
+            name = n;
+            account_num = accNum;
+            balance = bal;
+        }
+        
+        void deposit(float amount)
+        {
+            balance += amount;
+            cout<<"Deposited amount: "<<amount<<endl;
+            cout<<"Updated Balance: "<<balance<<endl;
+        }
+        void withdraw(float amount)
+        {
+            if(balance>=amount)
+            {
+                balance-=amount;
+                cout<<"withdrawal amount: "<<amount<<endl;
+                cout<<"Updated balance: "<<balance;
+            }
+            else
+            {
+                cout<<"Insufficient balance"<<endl;
+            }
+        }
+        void display ()
+        {
+            cout<<"Account Holder: "<<name<<endl;
+            cout<<"Account Number: "<<account_num<<endl;
+            cout<<"Balance: "<<balance<<endl;
+        }
+};
+
+int main()
+{
+    account acc("Shrikanth Arun Athithya. N", 9629155010, 2000.0);
+    int choice;
+    float amount;
+    
+    do{
+        cout<<"1.DEPOSIT"<<endl;
+        cout<<"2.WITHDRAW"<<endl;
+        cout<<"3.DISPLAY ACC INFO"<<endl;
+        cout<<"4.EXIT"<<endl;
+        cout<<"Enter your choice: "<<endl;
+        cin>>choice;
+        
+        switch(choice)
+        {
+            case 1:
+                cout<<"Enter the amount: "<<endl;
+                cin>>amount;
+                acc.deposit(amount);
+                break;
+                
+            case 2:
+                cout<<"Enter the amount: "<<endl;
+                cin>>amount;
+                acc.withdraw(amount);
+                break;
+                
+            case 3:
+                acc.display();
+                break;
+                
+            case 4:
+                cout<<"Thank you!"<<endl;
+                break;
+            
+            default:
+                cout<<"Enter a valid choice: "<<endl;
+        }
+    } while(choice!=4);
+}
